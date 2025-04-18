@@ -5,11 +5,7 @@ const statusEl = document.getElementById('status');
 
 // Показываем статус сети
 function updateOnlineStatus() {
-  if (navigator.onLine) {
-    statusEl.style.display = 'none';
-  } else {
-    statusEl.style.display = 'block';
-  }
+  statusEl.style.display = navigator.onLine ? 'none' : 'block';
 }
 window.addEventListener('online', updateOnlineStatus);
 window.addEventListener('offline', updateOnlineStatus);
@@ -30,9 +26,34 @@ function renderNotes() {
   notesList.innerHTML = '';
   notes.forEach((text, idx) => {
     const li = document.createElement('li');
+
     const span = document.createElement('span');
     span.textContent = text;
-    span.addEventListener('click', () => alert(text));
+    span.className = 'note-text';
+
+    // Редактирование заметки при клике
+    span.addEventListener('click', () => {
+      const input = document.createElement('input');
+      input.type = 'text';
+      input.value = text;
+      input.className = 'edit-input';
+
+      input.addEventListener('blur', () => {
+        const newText = input.value.trim();
+        if (newText) {
+          notes[idx] = newText;
+          saveNotes(notes);
+        }
+        renderNotes();
+      });
+
+      input.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') input.blur();
+      });
+
+      li.replaceChild(input, span);
+      input.focus();
+    });
 
     const delBtn = document.createElement('button');
     delBtn.textContent = 'Удалить';
@@ -57,5 +78,4 @@ addBtn.addEventListener('click', () => {
   renderNotes();
 });
 
-// Инициализация
 renderNotes();
