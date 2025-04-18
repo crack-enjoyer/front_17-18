@@ -1,0 +1,13 @@
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: sans-serif; display: flex; flex-direction: column; height: 100vh; }
+header { background: #007AFF; color: #fff; padding: 1rem; position: relative; }
+header h1 { font-size: 1.5rem; }
+#status { position: absolute; right: 1rem; top: 1rem; font-size: 0.9rem; display: none; }
+main { flex: 1; padding: 1rem; overflow-y: auto; }
+.input-area { display: flex; gap: 0.5rem; margin-bottom: 1rem; }
+#note-input { flex: 1; padding: 0.5rem; font-size: 1rem; resize: vertical; }
+#add-btn { padding: 0.5rem 1rem; font-size: 1rem; }
+ul { list-style: none; }
+li { padding: 0.5rem; border: 1px solid #ccc; border-radius: 0.25rem; margin-bottom: 0.5rem; display: flex; justify-content: space-between; align-items: center; }
+li span { flex: 1; cursor: pointer; }
+li button { margin-left: 0.5rem; }

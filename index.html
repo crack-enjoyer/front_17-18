@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="manifest" href="manifest.json">
+  <title>Заметки</title>
+</head>
+<body>
+  <header>
+    <h1>Заметки</h1>
+    <div id="status">Офлайн-режим</div>
+  </header>
+
+  <main>
+    <section class="input-area">
+      <textarea id="note-input" placeholder="Введите текст заметки..."></textarea>
+      <button id="add-btn">Добавить</button>
+    </section>
+    <ul id="notes-list"></ul>
+  </main>
+
+  <script src="script.js"></script>
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('sw.js');
+      });
+    }
+  </script>
+</body>
+</html>
