@@ -33,7 +33,7 @@ function renderNotes() {
 
     // Редактирование заметки при клике
     span.addEventListener('click', () => {
-      const input = document.createElement('input');
+      const input = document.createElement('textarea');
       input.type = 'text';
       input.value = text;
       input.className = 'edit-input';
